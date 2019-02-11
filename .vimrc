@@ -16,6 +16,7 @@ let mapleader=","
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   call minpac#add('dracula/vim', {'as': 'dracula'})
+  call minpac#add('morhetz/gruvbox')
 
   call minpac#add('tpope/vim-surround')
   call minpac#add('tpope/vim-unimpaired')
@@ -32,6 +33,8 @@ let mapleader=","
   call minpac#add('scrooloose/nerdtree')
   call minpac#add('junegunn/goyo.vim')
   call minpac#add('mhinz/vim-startify')
+  call minpac#add('luochen1990/rainbow')
+  call minpac#add('Yggdroot/indentLine')
 
   " Track the engine.
   call minpac#add('SirVer/ultisnips')
@@ -66,7 +69,7 @@ let mapleader=","
 """"""""""
   filetype plugin indent on
   syntax enable
-  color dracula
+  color gruvbox
 
   set number relativenumber
   set hidden
@@ -137,7 +140,7 @@ let mapleader=","
 
   " Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
   vnoremap <C-c> "+y
-  map <C-p> "+P
+  map <C-v> "+P
 
 """"""""""
 " minpac "
@@ -161,6 +164,10 @@ let mapleader=","
   set laststatus=2
   set showtabline=2
   set noshowmode
+
+  let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
+      \ }
 
 """"""""""""""""""""""""
 " vim-multiple-cursors "
@@ -187,6 +194,11 @@ let mapleader=","
         \{'d': '~/dotfiles'},
         \]
   let g:startify_files_number = 5
+
+"""""""""""
+" rainbow "
+"""""""""""
+  let g:rainbow_active = 1
 
 """""""""""""
 " utilsnips "

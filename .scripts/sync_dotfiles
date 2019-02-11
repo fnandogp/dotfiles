@@ -1,0 +1,4 @@
+#!/bin/sh
+# Sync everything within the dotfiles folder to the home directory.
+
+rsync -av --exclude=".git/" --exclude="README.md" $HOME/dotfiles/ $HOME

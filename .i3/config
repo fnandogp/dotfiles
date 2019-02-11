@@ -299,9 +299,9 @@ mode "resize" {
 bindsym $mod+p mode "$mode_monitor"
 set $mode_monitor (1) Only notebook, (2) Notebook+External, (3) Only External
 mode "$mode_monitor" {
-  bindsym 1 exec ~/dotfiles/.scripts/notebook_only.sh && sleep 1 && nitrogen --restore
-  bindsym 2 exec ~/dotfiles/.scripts/notebook_with_monitor.sh  && sleep 1 && nitrogen --restore
-  bindsym 3 exec ~/dotfiles/.scripts/monitor_only.sh && sleep 1 && nitrogen --restore
+  bindsym 1 exec ~/dotfiles/.scripts/notebook_only && sleep 1 && nitrogen --restore
+  bindsym 2 exec ~/dotfiles/.scripts/notebook_withmmonitor  && sleep 1 && nitrogen --restore
+  bindsym 3 exec ~/dotfiles/.scripts/monitor_only && sleep 1 && nitrogen --restore
 
   # exit system mode: "Enter" or "Escape"
   bindsym Return mode "default"
@@ -309,10 +309,10 @@ mode "$mode_monitor" {
 }
 
 # xrandr scripts
-bindsym $mod+F10        exec ~/dotfiles/.scripts/notebook_only.sh && sleep 1 && nitrogen --restore
-bindsym $mod+F11        exec ~/dotfiles/.scripts/notebook_with_monitor.sh  && sleep 1 && nitrogen --restore
-bindsym $mod+ShiftF11   exec ~/dotfiles/.scripts/mirrored.sh  && sleep 1 && nitrogen --restore
-bindsym $mod+F12        exec ~/dotfiles/.scripts/monitor_only.sh && sleep 1 && nitrogen --restore
+bindsym $mod+F10        exec ~/dotfiles/.scripts/notebook_only && sleep 1 && nitrogen --restore
+bindsym $mod+F11        exec ~/dotfiles/.scripts/notebook_with_monitor  && sleep 1 && nitrogen --restore
+bindsym $mod+ShiftF11   exec ~/dotfiles/.scripts/mirrored  && sleep 1 && nitrogen --restore
+bindsym $mod+F12        exec ~/dotfiles/.scripts/monitor_only && sleep 1 && nitrogen --restore
 
 # Lock screen
 bindsym $mod+Delete exec --no-startup-id blurlock
@@ -371,16 +371,8 @@ set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-#  i3bar_command i3bar
-  status_command i3blocks
+  status_command py3status
   position bottom
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#  tray_output primary
-#  tray_output eDP1
-#  bindsym button4 nop
-#  bindsym button5 nop
-#   font xft:URWGothic-Book 11
-  strip_workspace_numbers yes
 
   colors {
     background #222D31
