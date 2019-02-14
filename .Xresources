@@ -1,37 +1,28 @@
 !!!!!!!!!!!!
 ! Defaults !
 !!!!!!!!!!!!
-! hard contrast: *background: #1d2021
-*background: #282828
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
+! Dracula Xresources palette
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
 
-Xcursor.theme:                    xcursor-breeze
-Xcursor.size:                     0! I
+Xcursor.theme: xcursor-breeze
+Xcursor.size:  0! I
 Xft.dpi:       96
 Xft.antialias: true
 Xft.hinting:   true
@@ -39,69 +30,6 @@ Xft.rgba:      rgb
 Xft.autohint:  false
 Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
-
-!!!!!!!!!!!!
-! st / xst !
-!!!!!!!!!!!!
-! These are all possible options, presented with default values.
-! xst will fallback to *.option if st.option is not present.
-! see src/config.h for more information about option meanings.
-
-! These options only take effect on startup.
-st.termname:     st-256color
-! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
-! st.shell:        /usr/bin/zsh
-
-! The following options options can be reloaded via USR1 signal.
-st.font:              OperatorMono Book:pixelsize=14:antialias=true:autohint=true;
-st.borderpx:          0
-! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
-st.cursorshape:       2
-! thickness of underline and bar cursors
-st.cursorthickness:   2
-! 0: normal blinking, 1: leave cursor border and blink with cursor is background
-st.cursorblinkstyle:  0
-! 0: cursor blinks with a constant interval; 1: blinking cycle resets on key input
-st.cursorblinkontype: 1
-st.bold_font:         0
-st.xfps:              120
-st.actionfps:         30
-! Amount of lines scrolled
-st.mouseScrollLines:  1
-! Kerning / character bounding-box height multiplier
-st.chscale:           1.2
-! Kerning / character bounding-box width multiplier
-st.cwscale:           1.0
-! blinking timeout for terminal and cursor blinking (0 disables)
-st.blinktimeout:      800
-! bell volume. Value between -100 and 100. (0 disables)
-st.bellvolume:        0
-! this is a char that is exposed like so: `printf '\033[z'`
-st.prompt_char:       $
-! This option is can be preedit style. Available values: `root` `overthespot` (Default taken `root`)
-st.imstyle: root
-! opacity==255 means what terminal will be not transparent, 0 - fully transparent
-st.opacity:      255
-! Defaults taken from base16-twilight colorscheme.
-st.foreground:   #a7a7a7
-st.background:   #1e1e1e
-st.color0:       #1e1e1e
-st.color1:       #cf6a4c
-st.color2:       #8f9d6a
-st.color3:       #f9ee98
-st.color4:       #7587a6
-st.color5:       #9b859d
-st.color6:       #afc4db
-st.color7:       #a7a7a7
-st.color8:       #5f5a60
-st.color9:       #cf6a4c
-st.color10:      #8f9d6a
-st.color11:      #f9ee98
-st.color12:      #7587a6
-st.color13:      #9b859d
-st.color14:      #afc4db
-st.color15:      #ffffff
-st.color16:      #cda869
 
 !!!!!!!!!!!!!!!!!!
 ! xterm / uxterm !
