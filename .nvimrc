@@ -267,8 +267,10 @@ set noshowmode
 """"""""""""""""""""""""
 
 """"""""""""
-" nerdTree "
+" nerdtree "
 """"""""""""
+let NERDTreeQuitOnOpen=1
+
 map <C-e> :NERDTreeToggle<CR>
 map <Leader>r :NERDTreeFind<CR>
 
