@@ -16,6 +16,7 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 call minpac#add('dracula/vim', {'as': 'dracula'})
+call minpac#add('cocopon/iceberg.vim')
 "call minpac#add('morhetz/gruvbox')
 "call minpac#add('altercation/vim-colors-solarized')
 
@@ -92,7 +93,8 @@ call minpac#add('gaalcaras/ncm-R')
 """"""""""
 filetype plugin indent on
 syntax enable
-color dracula
+" color dracula
+color iceberg
 
 set number relativenumber
 set hidden

@@ -41,39 +41,40 @@ scrollbar = off
 [colors]
 
 # special
-foreground      = #f8f8f2
-foreground_bold = #f8f8f2
-cursor          = magenta
-background      = #282a36
+foreground      = #d2d2d2
+foreground_bold = #d2d2d2
+# cursor          = #e2a052
+background      = #383c4a
 
 # black
-color0  = #000000
-color8  = #4d4d4d
+color0  = #383c4a
+color8  = #404552
 
 # red
-color1  = #ff5555
-color9  = #ff6e67
+color1  = #9a4138
+color9  = #e7766b
 
 # green
-color2  = #50fa7b
-color10 = #5af78e
+color2  = #4bec90
+color10 = #3cbf75
 
 # yellow
-color3  = #f1fa8c
-color11 = #f4f99d
+color3  = #d8d782
+color11 = #cfcd63
 
 # blue
-color4  = #bd93f9
-color12 = #caa9fa
+color4  = #5294e2
+color12 = #579cef
 
 # magenta
-color5  = #ff79c6
-color13 = #ff92d0
+color5  = #ce50dd
+color13 = #e7766b
 
 # cyan
-color6  = #8be9fd
-color14 = #9aedfe
+color6  = #6be5e7
+color14 = #90fdff
 
 # white
-color7  = #bfbfbf
-color15 = #e6e6e6
+color7  = #cccccc
+color15 = #ffffff
+
