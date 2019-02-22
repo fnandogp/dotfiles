@@ -1,4 +1,4 @@
-let mapleader=","
+let mapleader=','
 
 """"""""""""
 " Packages "
@@ -15,10 +15,8 @@ call minpac#init()
 
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-call minpac#add('dracula/vim', {'as': 'dracula'})
+" Theme
 call minpac#add('cocopon/iceberg.vim')
-"call minpac#add('morhetz/gruvbox')
-"call minpac#add('altercation/vim-colors-solarized')
 
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
@@ -57,6 +55,7 @@ call minpac#add('w0rp/ale')
 call minpac#add('othree/html5.vim')
 call minpac#add('tpope/vim-ragtag')
 call minpac#add('alvan/vim-closetag')
+call minpac#add('mattn/emmet-vim')
 
 " CSS
 call minpac#add('hail2u/vim-css3-syntax')
@@ -66,12 +65,12 @@ call minpac#add('groenewege/vim-less')
 call minpac#add('othree/csscomplete.vim')
 
 " Javascript
-call minpac#add('prettier/vim-prettier', {'do': 'yarn install',
-      \'for': [
-      \'javascript', 'typescript', 'css', 'less', 'scss',
-      \'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'
-      \]})
-call minpac#add('ncm2/ncm2-tern', {'do': 'yarn install'})
+call minpac#add('pangloss/vim-javascript', {'for': 'javascript'})
+call minpac#add('mxw/vim-jsx', {'for': 'javascript'})
+call minpac#add('ncm2/ncm2-tern', {
+      \'for': 'javascript',
+      \'do': 'yarn install'
+      \})
 
 " PHP
 "call minpac#add('StanAngeloff/php.vim', {'for': 'php'})
@@ -118,6 +117,16 @@ set scrolloff=3
 au FocusLost * silent! wa
 " Save on buffer switch
 set autowriteall
+
+" Simulate Home and End keys
+noremap  <Home> g^
+inoremap <Home> <C-o>g^
+noremap  <End>  g$
+inoremap <End>  <C-o>g$
+noremap  <S-h>  g^
+inoremap <S-h>  <C-o>g^
+noremap  <S-l>  g$
+inoremap <S-l>  <C-o>g$
 
 " Reload window
 nnoremap <F5> :edit!<CR>
@@ -170,6 +179,9 @@ nnoremap td  :tabclose<CR>
 vnoremap <C-c> "+y
 map <C-v> "+P
 
+" Open terminal
+nnoremap <Leader>term :vsp \| term<CR>i
+
 """"""""""
 " minpac "
 """"""""""
@@ -189,9 +201,9 @@ map <C-o> :Buffers<CR>
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+
 " Command for git grep
 " - fzf#vim#grep(command, with_column, [options], [fullscreen])
-
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
   \   'git grep --line-number '.shellescape(<q-args>), 0,
@@ -270,9 +282,10 @@ set noshowmode
 " nerdtree "
 """"""""""""
 let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
 
 map <C-e> :NERDTreeToggle<CR>
-map <Leader>r :NERDTreeFind<CR>
+"map <Leader>r :NERDTreeFind<CR>
 
 """"""""
 " goyo "
@@ -290,6 +303,8 @@ let g:startify_bookmarks = [
       \]
 let g:startify_files_number = 5
 
+nmap <Leader>S :Startify<CR>
+
 """""""""""
 " rainbow "
 """""""""""
@@ -298,11 +313,11 @@ let g:rainbow_active = 1
 """""""""""""
 " utilsnips "
 """""""""""""
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpForwardTrigger="<C-b>"
-let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+let g:UltiSnipsExpandTrigger='<C-j>'
+let g:UltiSnipsJumpForwardTrigger='<C-b>'
+let g:UltiSnipsJumpBackwardTrigger='<C-z>'
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit='vertical'
 
 
 " parameter expansion for selected entry via Enter
@@ -315,8 +330,8 @@ inoremap <silent> <expr> <CR> (pumvisible() ? ncm2_ultisnips#expand_or("\<CR>", 
 """"""""
 " ncm2 "
 """"""""
-let g:python_host_prog="/home/fnandogp/.pyenv/versions/nvim2/bin/python"
-let g:python3_host_prog="/home/fnandogp/.pyenv/versions/nvim3/bin/python"
+let g:python_host_prog='/home/fnandogp/.pyenv/versions/nvim2/bin/python'
+let g:python3_host_prog='/home/fnandogp/.pyenv/versions/nvim3/bin/python'
 
 " enable ncm2 for all buffer
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -343,16 +358,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " add 180ms delay before the omni wrapper:
 "  'on_complete': ['ncm2#on_complete#delay', 180,
 "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-      \ 'name' : 'css',
-      \ 'priority': 9,
-      \ 'subscope_enable': 1,
-      \ 'scope': ['css','scss'],
-      \ 'mark': 'css',
-      \ 'word_pattern': '[\w\-]+',
-      \ 'complete_pattern': ':\s*',
-      \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-      \ })
+" au User Ncm2Plugin call ncm2#register_source({
+"       \ 'name' : 'css',
+"       \ 'priority': 9,
+"       \ 'subscope_enable': 1,
+"       \ 'scope': ['css','scss'],
+"       \ 'mark': 'css',
+"       \ 'word_pattern': '[\w\-]+',
+"       \ 'complete_pattern': ':\s*',
+"       \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+"       \ })
 
 """""""
 " ale "
@@ -361,13 +376,25 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
       \   '*': ['trim_whitespace'],
       \}
-
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
 
 """""""""""""""""""
 " csscomplete.vim "
 """""""""""""""""""
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
+"""""""""""""
+" emmet.vim "
+"""""""""""""
+"let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+      \  'javascript.jsx' : {
+      \      'extends' : 'jsx',
+      \  },
+      \}
+
 
