@@ -9,7 +9,7 @@ set $height 28
 # set default desktop layout (default is tiling)
 # workspace_layout tabbed <stacking|tabbed>
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-new_window none
+new_window pixel 1
 new_float normal
 
 # Hide borders
@@ -338,7 +338,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 # exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
-exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_maia
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
@@ -413,10 +413,10 @@ bindsym $mod+Shift+m bar mode toggle
 
 # Theme colors
 #                       BORDER       BACKGROUND   TEXT        INDICATOR   CHILD_BORDER
-client.focused          $transparent $transparent $white      $darkblack  $darkblack
-client.unfocused        $transparent $transparent $darkwhite  $darkblack  $darkblack
-client.focused_inactive $black       $black       $white      $darkblack  $darkblack
-client.urgent           $darkred     $darkred     $white      $darkred    $darkred
+client.focused          $white       $black       $white      $darkblack  $darkwhite
+client.unfocused        $darkblack   $darkblack   $darkwhite  $darkblack  $darkblack
+client.focused_inactive $darkblack   $darkblack   $white      $darkblack  $darkblack
+client.urgent           $red         $darkred     $white      $darkred    $red
 client.background       $black
 
 #############################
