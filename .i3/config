@@ -413,7 +413,7 @@ bindsym $mod+Shift+m bar mode toggle
 
 # Theme colors
 #                       BORDER       BACKGROUND   TEXT        INDICATOR   CHILD_BORDER
-client.focused          $white       $black       $white      $darkblack  $darkwhite
+client.focused          $white       $black       $white      $darkblack  $darkblack
 client.unfocused        $darkblack   $darkblack   $darkwhite  $darkblack  $darkblack
 client.focused_inactive $darkblack   $darkblack   $white      $darkblack  $darkblack
 client.urgent           $red         $darkred     $white      $darkred    $red
