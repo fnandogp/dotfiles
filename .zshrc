@@ -24,8 +24,8 @@ antigen theme robbyrussell
 export EDITOR=/usr/bin/vim
 
 # source custom files
-source ~/dotfiles/.paths
-source ~/dotfiles/.aliases
+source ~/dotfiles/.pathrc
+source ~/dotfiles/.aliasrc
 
 # NVM
 export NVM_DIR="$HOME/.nvm"

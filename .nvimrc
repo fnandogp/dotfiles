@@ -10,6 +10,8 @@ if &compatible
 endif
 
 set packpath^=~/.vim
+set runtimepath^=~/.vim/UtilSnips
+
 packadd minpac
 call minpac#init()
 
@@ -32,11 +34,12 @@ call minpac#add('mileszs/ack.vim')
 call minpac#add('itchyny/lightline.vim')
 call minpac#add('terryma/vim-multiple-cursors')
 call minpac#add('scrooloose/nerdtree')
+call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('moll/vim-bbye')
 call minpac#add('junegunn/goyo.vim')
 call minpac#add('mhinz/vim-startify')
-call minpac#add('luochen1990/rainbow')
 call minpac#add('Yggdroot/indentLine')
+call minpac#add('ludovicchabant/vim-gutentags')
 
 " Track the engine.
 call minpac#add('SirVer/ultisnips')
@@ -53,8 +56,8 @@ call minpac#add('w0rp/ale')
 
 " HTML
 call minpac#add('othree/html5.vim')
-call minpac#add('tpope/vim-ragtag')
 call minpac#add('alvan/vim-closetag')
+call minpac#add('Valloric/MatchTagAlways')
 call minpac#add('mattn/emmet-vim')
 
 " CSS
@@ -69,7 +72,7 @@ call minpac#add('pangloss/vim-javascript', {'for': 'javascript'})
 call minpac#add('mxw/vim-jsx', {'for': 'javascript'})
 call minpac#add('ncm2/ncm2-tern', {
       \'for': 'javascript',
-      \'do': 'yarn install'
+      \'do': 'yarn install && npm i -g tern'
       \})
 
 " PHP
@@ -123,10 +126,10 @@ noremap  <Home> g^
 inoremap <Home> <C-o>g^
 noremap  <End>  g$
 inoremap <End>  <C-o>g$
-noremap  <S-h>  g^
-inoremap <S-h>  <C-o>g^
-noremap  <S-l>  g$
-inoremap <S-l>  <C-o>g$
+noremap  <C-h>  g^
+inoremap <C-h>  <C-o>g^
+noremap  <C-l>  g$
+inoremap <C-l>  <C-o>g$
 
 " Reload window
 nnoremap <F5> :edit!<CR>
@@ -305,19 +308,14 @@ let g:startify_files_number = 5
 
 nmap <Leader>S :Startify<CR>
 
-"""""""""""
-" rainbow "
-"""""""""""
-let g:rainbow_active = 1
-
 """""""""""""
 " utilsnips "
 """""""""""""
-let g:UltiSnipsExpandTrigger='<C-j>'
-let g:UltiSnipsJumpForwardTrigger='<C-b>'
-let g:UltiSnipsJumpBackwardTrigger='<C-z>'
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit='vertical'
+let g:UltiSnipsSnippetDirectories=['UtilSnips']
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+let g:UltiSnipsEditSplit="vertical"
 
 
 " parameter expansion for selected entry via Enter
@@ -382,10 +380,38 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
 
+nnoremap <Leader>f :ALEFix<CR>
+
+""""""""""""""""
+" vim-closetag "
+""""""""""""""""
+" These are the file extensions where this plugin is enabled.
+let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
+
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<Leader>>'
+
 """""""""""""""""""
 " csscomplete.vim "
 """""""""""""""""""
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+
+""""""""""""""""""
+" MatchTagAlways "
+""""""""""""""""""
+let g:mta_filetypes = {
+    \'javascript.jsx': 1,
+    \ 'html' : 1
+    \}
 
 """""""""""""
 " emmet.vim "
