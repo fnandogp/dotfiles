@@ -1,0 +1,19 @@
+#########
+# Print #
+#########
+snippet p "Print"
+print(${1}); print("\n");
+endsnippet
+
+snippet pd "Print with description"
+print('${1/'//g}:' . ${1}); print("\n");
+endsnippet
+
+snippet pr "Print_r"
+print_r(${1}); print("\n");
+endsnippet
+
+snippet prd "Print_r with description"
+print('${1/'//g}:' . "\n"); print_r(${1}); print("\n");
+endsnippet
+

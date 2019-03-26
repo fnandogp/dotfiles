@@ -1,9 +1,26 @@
 # Imports
-snippet rim
+snippet rim "React - Import"
 import React from 'react';
 endsnippet
 
-snippet rimm
+snippet rimm "React - Import Multiples"
 impor React, {${1}} from 'react';
+endsnippet
+
+snippet ript "React - Import PropTypes"
+import PropTypes from 'prop-types';
+endsnippet
+
+
+snippet rfc "React - Create Functional Component" b
+import React from 'react';
+
+const ${1} = props => {
+  return (
+	${2}
+  );
+}
+
+export default $1;
 endsnippet
 

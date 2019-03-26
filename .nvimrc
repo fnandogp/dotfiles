@@ -63,9 +63,12 @@ call minpac#add('mattn/emmet-vim')
 " CSS
 call minpac#add('hail2u/vim-css3-syntax')
 call minpac#add('ap/vim-css-color')
-call minpac#add('cakebaker/scss-syntax.vim')
-call minpac#add('groenewege/vim-less')
+" call minpac#add('cakebaker/scss-syntax.vim')
+" call minpac#add('groenewege/vim-less')
 call minpac#add('othree/csscomplete.vim')
+
+" JSON
+call minpac#add('elzr/vim-json')
 
 " Javascript
 call minpac#add('pangloss/vim-javascript', {'for': 'javascript'})
@@ -76,12 +79,12 @@ call minpac#add('ncm2/ncm2-tern', {
       \})
 
 " PHP
-"call minpac#add('StanAngeloff/php.vim', {'for': 'php'})
-"call minpac#add('phpactor/phpactor', {'do': ':call phpactor#Update()', 'for': 'php'})
-"call minpac#add('phpactor/ncm2-phpactor', {'for': 'php'})
+call minpac#add('StanAngeloff/php.vim', {'for': 'php'})
+call minpac#add('phpactor/phpactor', {'do': 'composer install', 'for': 'php'})
+call minpac#add('phpactor/ncm2-phpactor', {'for': 'php'})
 "call minpac#add('adoy/vim-php-refactoring-toolbox', {'for': 'php'})
 "call minpac#add('arnaud-lb/vim-php-namespace', {'for': 'php'})
-"call minpac#add('alvan/vim-php-manual', {'for': 'php'})
+call minpac#add('alvan/vim-php-manual', {'for': 'php'})
 
 " Python
 call minpac#add('ncm2/ncm2-jedi', {'for': 'python'})
@@ -167,6 +170,12 @@ nnoremap <M-S-h> <C-w>H
 nnoremap <M-S-j> <C-w>J
 nnoremap <M-S-k> <C-w>K
 nnoremap <M-S-l> <C-w>L
+
+" Window resize
+nnoremap <silent> <M-+> :resize +10 <CR>
+nnoremap <silent> <M-_> :resize -10 <CR>
+nnoremap <silent> <M-}> :vertical resize +10 <CR>
+nnoremap <silent> <M-{> :vertical resize -10 <CR>
 
 " Tab navigation
 nnoremap th  :tabfirst<CR>
@@ -356,16 +365,16 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " add 180ms delay before the omni wrapper:
 "  'on_complete': ['ncm2#on_complete#delay', 180,
 "               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-" au User Ncm2Plugin call ncm2#register_source({
-"       \ 'name' : 'css',
-"       \ 'priority': 9,
-"       \ 'subscope_enable': 1,
-"       \ 'scope': ['css','scss'],
-"       \ 'mark': 'css',
-"       \ 'word_pattern': '[\w\-]+',
-"       \ 'complete_pattern': ':\s*',
-"       \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-"       \ })
+au User Ncm2Plugin call ncm2#register_source({
+      \ 'name' : 'css',
+      \ 'priority': 9,
+      \ 'subscope_enable': 1,
+      \ 'scope': ['css','scss'],
+      \ 'mark': 'css',
+      \ 'word_pattern': '[\w\-]+',
+      \ 'complete_pattern': ':\s*',
+      \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
+      \ })
 
 """""""
 " ale "
@@ -386,7 +395,7 @@ nnoremap <Leader>f :ALEFix<CR>
 " vim-closetag "
 """"""""""""""""
 " These are the file extensions where this plugin is enabled.
-let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.php,*.jsx"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.jsx'
 
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
 let g:closetag_emptyTags_caseSensitive = 1
@@ -403,7 +412,7 @@ let g:closetag_close_shortcut = '<Leader>>'
 """""""""""""""""""
 " csscomplete.vim "
 """""""""""""""""""
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 """"""""""""""""""
 " MatchTagAlways "
@@ -423,4 +432,12 @@ let g:user_emmet_settings = {
       \  },
       \}
 
+""""""""""""
+" vim-json "
+""""""""""""
+let g:vim_json_syntax_conceal = 0
 
+"""""""""""
+" vim-jsx "
+"""""""""""
+let g:jsx_ext_required = 1
