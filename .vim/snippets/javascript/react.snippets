@@ -1,0 +1,222 @@
+# Imports
+snippet rir
+  import React from 'react';
+
+snippet rirc
+  import React, {Component} from 'react';
+
+snippet ript
+  import PropTypes from 'prop-types';
+
+snippet rird
+  import ReactDOM from 'react-dom';
+
+snippet rcdm
+  function componentDidMount() {
+    ${1}
+  }
+
+snippet rcwm
+  function componentWillMount() {
+    ${1}
+  }
+
+snippet rcwr
+  function componentWillReceiveProps() {
+    ${1}
+  }
+
+snippet rscu
+  function shouldComponentUpdate() {
+    ${1}
+  }
+
+snippet rcwup
+  function componentWillUpdate() {
+    ${1}
+  }
+
+snippet rcdup
+  function componentDidUpdate() {
+    ${1}
+  }
+
+snippet rcwun
+  function componentWillUnmount() {
+    ${1}
+  }
+
+snippet rcdc
+  function componentDidCatch() {
+    ${1}
+  }
+
+snippet rcx
+  cx
+
+snippet rcct
+  ${1}.contextTypes = {
+    ${2}
+  }
+
+snippet rcpt
+  ${1}.propTypes = {
+    ${2}
+  }
+
+snippet rcdp
+  ${1}.defaultProps = {
+    ${2}
+  }
+
+snippet rscct
+  static contextTypes = {
+    ${1}
+  };
+
+snippet rscpt
+  static propsTypes = {
+    ${1}
+  };
+
+snippet rscdp
+  static defaultProps = {
+    ${1}
+  };
+
+snippet rcdn
+  displayName: ${1}
+
+snippet rren
+  function render() {
+    ${1}
+  }
+
+snippet rsst
+  setState()
+
+snippet rprops
+  this.props.${1}
+
+snippet rstate
+  this.state.${1}
+
+snippet rrrc
+  React.render()
+
+snippet rfrag
+  <React.Fragment>
+    ${1}
+  </React.Fragment>
+
+snippet rcns
+  function constructor() {
+    ${1}
+  }
+
+snippet rclass
+  class ${1} extends React.Component {
+    ${2}
+  }
+
+  export default $1;
+
+snippet rfunc
+  import React from 'react';
+
+  const ${1} = props => {
+    return (
+	    ${2}
+    );
+  }
+
+  export default $1;
+
+#############
+# PropTypes #
+#############
+
+snippet rpta
+  PropTypes.array,
+
+snippet rptar
+  PropTypes.array.isRequired,
+
+snippet rptb
+  PropTypes.bool,
+
+snippet rptbr
+  PropTypes.bool.isRequired,
+
+snippet rptf
+  PropTypes.func,
+
+snippet rptfr
+  PropTypes.func.isRequired,
+
+snippet rptn
+  PropTypes.number,
+
+snippet rptnr
+  PropTypes.number.isRequired,
+
+snippet rpto
+  PropTypes.object.,
+
+snippet rptor
+  PropTypes.object.isRequired,
+
+snippet rpts
+  PropTypes.string,
+
+snippet rptsr
+  PropTypes.string.isRequired,
+
+snippet rptnd
+  PropTypes.node,
+
+snippet rptndr
+  PropTypes.node.isRequired,
+
+snippet rptel
+  PropTypes.element,
+
+snippet rptelr
+  PropTypes.element.isRequired,
+
+snippet rpti
+  PropTypes.instanceOf(${1}),
+
+snippet rptir
+  PropTypes.instanceOf(${1}).isRequired,
+
+snippet rpte
+  PropTypes.oneOf([${1}]),
+
+snippet rpter
+  PropTypes.oneOf([${1}]).isRequired,
+
+snippet rptet
+  PropTypes.oneOfType([${1}]),
+
+snippet rptetr
+  PropTypes.oneOfType([${1}]).isRequired,
+
+snippet rptao
+  PropTypes.arrayOf(${1}),
+
+snippet rptaor
+  PropTypes.arrayOf(${1}).isRequired,
+
+snippet rptoo
+  PropTypes.objectOf(${1}),
+
+snippet rptoor
+  PropTypes.objectOf(${1}).isRequired,
+
+snippet rptsh
+  PropTypes.shape({${1}}),
+
+snippet rptshr
+  PropTypes.shape({${1}}).isRequired,
+

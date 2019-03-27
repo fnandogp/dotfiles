@@ -10,7 +10,6 @@ if &compatible
 endif
 
 set packpath^=~/.vim
-set runtimepath^=~/.vim/UtilSnips
 
 packadd minpac
 call minpac#init()
@@ -23,7 +22,6 @@ call minpac#add('cocopon/iceberg.vim')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-commentary')
 call minpac#add('machakann/vim-highlightedyank')
 call minpac#add('airblade/vim-gitgutter')
 
@@ -34,25 +32,23 @@ call minpac#add('mileszs/ack.vim')
 call minpac#add('itchyny/lightline.vim')
 call minpac#add('terryma/vim-multiple-cursors')
 call minpac#add('scrooloose/nerdtree')
-call minpac#add('ryanoasis/vim-devicons')
+call minpac#add('scrooloose/nerdcommenter')
+call minpac#add('jiangmiao/auto-pairs')
 call minpac#add('moll/vim-bbye')
-call minpac#add('junegunn/goyo.vim')
 call minpac#add('mhinz/vim-startify')
 call minpac#add('Yggdroot/indentLine')
 call minpac#add('ludovicchabant/vim-gutentags')
 
-" Track the engine.
-call minpac#add('SirVer/ultisnips')
-" Snippets are separated from the engine. Add this if you want them:
-call minpac#add('phux/vim-snippets')
-
-call minpac#add('ncm2/ncm2')
-call minpac#add('ncm2/ncm2-ultisnips')
-call minpac#add('roxma/nvim-yarp')
-call minpac#add('roxma/vim-hug-neovim-rpc')
-call minpac#add('ncm2/ncm2-bufword')
-call minpac#add('ncm2/ncm2-path')
+" Linters and fixers
 call minpac#add('w0rp/ale')
+
+" Autocompletion
+call minpac#add('Shougo/deoplete.nvim')
+
+" Snippets
+call minpac#add('Shougo/neosnippet.vim')
+call minpac#add('Shougo/neosnippet-snippets')
+call minpac#add('honza/vim-snippets')
 
 " HTML
 call minpac#add('othree/html5.vim')
@@ -73,25 +69,21 @@ call minpac#add('elzr/vim-json')
 " Javascript
 call minpac#add('pangloss/vim-javascript', {'for': 'javascript'})
 call minpac#add('mxw/vim-jsx', {'for': 'javascript'})
-call minpac#add('ncm2/ncm2-tern', {
-      \'for': 'javascript',
-      \'do': 'yarn install && npm i -g tern'
-      \})
+call minpac#add('carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' })
 
 " PHP
 call minpac#add('StanAngeloff/php.vim', {'for': 'php'})
 call minpac#add('phpactor/phpactor', {'do': 'composer install', 'for': 'php'})
-call minpac#add('phpactor/ncm2-phpactor', {'for': 'php'})
+call minpac#add('kristijanhusak/deoplete-phpactor')
 "call minpac#add('adoy/vim-php-refactoring-toolbox', {'for': 'php'})
 "call minpac#add('arnaud-lb/vim-php-namespace', {'for': 'php'})
 call minpac#add('alvan/vim-php-manual', {'for': 'php'})
 
 " Python
-call minpac#add('ncm2/ncm2-jedi', {'for': 'python'})
 
 " R
 call minpac#add('jalvesaq/Nvim-R')
-call minpac#add('gaalcaras/ncm-R')
+"call minpac#add('gaalcaras/ncm-R')
 
 """"""""""
 " Basics "
@@ -101,9 +93,13 @@ syntax enable
 " color dracula
 color iceberg
 
-set number relativenumber
+set number
+set relativenumber
 set hidden
 set encoding=utf-8
+set nobackup
+set noswapfile
+set nowrap
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
 
@@ -178,14 +174,14 @@ nnoremap <silent> <M-}> :vertical resize +10 <CR>
 nnoremap <silent> <M-{> :vertical resize -10 <CR>
 
 " Tab navigation
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<Space>
-nnoremap tn  :tabnext<Space>
-nnoremap tm  :tabm<Space>
-nnoremap td  :tabclose<CR>
+nnoremap th :tabfirst<CR>
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+nnoremap tl :tablast<CR>
+nnoremap tt :tabedit<Space>
+nnoremap tn :tabnext<Space>
+nnoremap tm :tabm<Space>
+nnoremap td :tabclose<CR>
 
 " Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
 vnoremap <C-c> "+y
@@ -193,6 +189,11 @@ map <C-v> "+P
 
 " Open terminal
 nnoremap <Leader>term :vsp \| term<CR>i
+
+" Stay in visual mode when indenting. You will never have to run gv after
+" performing an indentation.
+vnoremap < <gv
+vnoremap > >gv
 
 """"""""""
 " minpac "
@@ -282,14 +283,6 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 
-" let g:lightline = {
-"       \ 'colorscheme': 'gruvbox',
-"       \ }
-
-""""""""""""""""""""""""
-" vim-multiple-cursors "
-""""""""""""""""""""""""
-
 """"""""""""
 " nerdtree "
 """"""""""""
@@ -297,12 +290,6 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 
 map <C-e> :NERDTreeToggle<CR>
-"map <Leader>r :NERDTreeFind<CR>
-
-""""""""
-" goyo "
-""""""""
-map <Leader>f :Goyo \| set linebreak<CR>
 
 """"""""""""
 " startify "
@@ -317,65 +304,49 @@ let g:startify_files_number = 5
 
 nmap <Leader>S :Startify<CR>
 
-"""""""""""""
-" utilsnips "
-"""""""""""""
-let g:UltiSnipsSnippetDirectories=['UtilSnips']
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-let g:UltiSnipsEditSplit="vertical"
+"""""""""""""""""
+" deoplete.nvim "
+"""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+" use tab to forward cycle
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" use tab to backward cycle
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+" Close the documentation window when completion is done
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
+""""""""""""""""""
+" neosnippet.vim "
+""""""""""""""""""
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#enable_completed_snippet = 1
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory = [
+      \'~/.vim/pack/minpac/start/vim-snippets/snippets',
+      \'~/vim/snippets'
+      \]
 
-" parameter expansion for selected entry via Enter
-inoremap <silent> <expr> <CR> (pumvisible() ? ncm2_ultisnips#expand_or("\<CR>", 'n') : "\<CR>")
+" Plugin key-mappings.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+imap <C-j> <Plug>(neosnippet_expand_or_jump)
+smap <C-j> <Plug>(neosnippet_expand_or_jump)
+xmap <C-j> <Plug>(neosnippet_expand_target)
 
-"let g:ultisnips_php_scalar_types = 1
-"command! -nargs=1 silent execute ':silent !'.<q-args> | execute ':redraw!'
-"map <C-F> <ESC>:w<CR>:silent php-cs-fixer fix %:p --config=~/.php_cs<CR>
+" SuperTab like snippets behavior.
+" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-""""""""
-" ncm2 "
-""""""""
-let g:python_host_prog='/home/fnandogp/.pyenv/versions/nvim2/bin/python'
-let g:python3_host_prog='/home/fnandogp/.pyenv/versions/nvim3/bin/python'
-
-" enable ncm2 for all buffer
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-" supress the annoying 'match x of y', 'The only match' and 'Pattern not
-" found' messages
-set shortmess+=c
-" enable auto complete for `<backspace>`, `<C-w>` keys.
-" known issue https://github.com/ncm2/ncm2/issues/7
-"au TextChangedI * call ncm2#auto_trigger()
-" CTRL-C doesn't trigger the InsertLeave autocmd . map to <ESC> instead.
-inoremap <C-c> <ESC>
-" When the <Enter> key is pressed while the popup menu is visible, it only
-" hides the menu. Use this mapping to close the menu and also start a new
-" line.
-inoremap <expr> <CR> (pumvisible() ? "\<C-y>" : "\<CR>")
-" Use <TAB> to select the popup menu:
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" wrap existing omnifunc
-" Note that omnifunc does not run in background and may probably block the
-" editor. If you don't want to be blocked by omnifunc too often, you could
-" add 180ms delay before the omni wrapper:
-"  'on_complete': ['ncm2#on_complete#delay', 180,
-"               \ 'ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-au User Ncm2Plugin call ncm2#register_source({
-      \ 'name' : 'css',
-      \ 'priority': 9,
-      \ 'subscope_enable': 1,
-      \ 'scope': ['css','scss'],
-      \ 'mark': 'css',
-      \ 'word_pattern': '[\w\-]+',
-      \ 'complete_pattern': ':\s*',
-      \ 'on_complete': ['ncm2#on_complete#omni', 'csscomplete#CompleteCSS'],
-      \ })
-
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+"
 """""""
 " ale "
 """""""
@@ -389,7 +360,7 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
 
-nnoremap <Leader>f :ALEFix<CR>
+nnoremap <silent> <Leader>f :ALEFix<CR>
 
 """"""""""""""""
 " vim-closetag "
@@ -408,11 +379,6 @@ let g:closetag_regions = {
 
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<Leader>>'
-
-"""""""""""""""""""
-" csscomplete.vim "
-"""""""""""""""""""
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 """"""""""""""""""
 " MatchTagAlways "
