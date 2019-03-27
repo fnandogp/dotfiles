@@ -12,47 +12,44 @@ snippet rird
   import ReactDOM from 'react-dom';
 
 snippet rcdm
-  function componentDidMount() {
+  componentDidMount() {
     ${1}
   }
 
 snippet rcwm
-  function componentWillMount() {
+  componentWillMount() {
     ${1}
   }
 
 snippet rcwr
-  function componentWillReceiveProps() {
+  componentWillReceiveProps() {
     ${1}
   }
 
 snippet rscu
-  function shouldComponentUpdate() {
+  shouldComponentUpdate() {
     ${1}
   }
 
 snippet rcwup
-  function componentWillUpdate() {
+  componentWillUpdate() {
     ${1}
   }
 
 snippet rcdup
-  function componentDidUpdate() {
+  componentDidUpdate() {
     ${1}
   }
 
 snippet rcwun
-  function componentWillUnmount() {
+  componentWillUnmount() {
     ${1}
   }
 
 snippet rcdc
-  function componentDidCatch() {
+  componentDidCatch() {
     ${1}
   }
-
-snippet rcx
-  cx
 
 snippet rcct
   ${1}.contextTypes = {
@@ -88,7 +85,7 @@ snippet rcdn
   displayName: ${1}
 
 snippet rren
-  function render() {
+  render() {
     ${1}
   }
 
@@ -110,7 +107,9 @@ snippet rfrag
   </React.Fragment>
 
 snippet rcns
-  function constructor() {
+  constructor(props) {
+    super(props);
+
     ${1}
   }
 
