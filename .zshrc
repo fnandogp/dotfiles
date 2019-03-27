@@ -38,8 +38,8 @@ eval "$(pyenv virtualenv-init -)"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
 # PHP
-#export PHPENV_ROOT="/home/fnandogp/.phpenv"
-#eval "$(phpenv init -)"
+export PHPENV_ROOT="/home/fnandogp/.phpenv"
+eval "$(phpenv init -)"
 
 # Tell Antigen that you're done.
 antigen apply
