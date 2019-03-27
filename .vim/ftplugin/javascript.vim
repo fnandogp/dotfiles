@@ -1,4 +1,4 @@
 """"""""""""""
 " javascript "
 """"""""""""""
-let b:ale_fixers = ['trim_whitespace', 'eslint']
+let g:ale_fixers['javascript'] = ['eslint']

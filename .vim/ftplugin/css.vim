@@ -1,4 +1,4 @@
 """""""
 " css "
 """""""
-let b:ale_fixers = ['stylelint']
+let g:ale_fixers['css'] = ['stylelint']

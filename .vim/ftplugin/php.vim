@@ -11,8 +11,8 @@ set shiftwidth=4
 """""""
 " ale "
 """""""
-let b:ale_linters = ['phpmd', 'phpstan']
-let b:ale_fixers = ['php_cs_fixer']
+let g:ale_linters['php'] = ['php', 'phpstan']
+let g:ale_fixers['php'] = ['php_cs_fixer', 'phpcbf']
 
 """"""""""""
 " phpactor "
